@@ -5,7 +5,7 @@ export default function Logo(props) {
   return (
     <Box {...props}>
       <Text fontSize="2xl" fontWeight="bold">
-        TextUtils
+        TextBlend
       </Text>
     </Box>
   );

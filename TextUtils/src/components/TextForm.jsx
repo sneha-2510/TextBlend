@@ -8,6 +8,11 @@ function TextForm() {
         setText(e.target.value)
     }
 
+    const handleClearClick = () => {
+        // console.log("uppercase button was clicked");
+        const newText = "";
+        setText(newText);
+    }
     //to uppercase function
     const handleUpClick = () => {
         // console.log("uppercase button was clicked");
@@ -41,15 +46,22 @@ function TextForm() {
                 />
                 {/* TODO : create a button componet and then use that for optimization */}
                 <Stack spacing={4} direction='row' align='center' my={6}>
-                    <Button colorScheme='green' size='md'
+                <Button colorScheme='green' 
+                        onClick={handleClearClick}>
+                        Clear-Text
+                    </Button>
+
+                    <Button colorScheme='green' 
                         onClick={handleUpClick}>
                         UpperCase
                     </Button>
 
-                    <Button colorScheme='green' size='md'
+                    <Button colorScheme='green' 
                         onClick={handleLowClick}>
                         LowerCase
                     </Button>
+
+                    
                 </Stack>
             </Container>
 
