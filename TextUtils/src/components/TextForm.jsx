@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState} from 'react'
 import { Textarea, Container, Heading, Stack, } from '@chakra-ui/react'
 import ButtonComponent from './ButtonComponent'
 
 function TextForm() {
-
+   
     const [text, setText] = useState("");
 
     //get the entered text 
@@ -93,7 +93,7 @@ function TextForm() {
                 <Heading as='h2' size='lg' my={4}>Preview</Heading>
                 <p>{text ? text : "Nothing to preview!"}</p>
             </Container>
-
+            
         </>
     )
 }

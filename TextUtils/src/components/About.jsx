@@ -1,28 +1,45 @@
-import React from 'react'
-import { Container, Heading, Box } from '@chakra-ui/react'
-import Accordian from './Accordian'
+import React, { useState } from 'react'
+import {
+    Container, Heading, Box,
+    Accordion,
+    AccordionItem,
+    AccordionButton,
+    AccordionPanel,
+    AccordionIcon,
+    Button,
+} from '@chakra-ui/react'
 
 
 function About() {
 
-    const accordianItems = [
-        {
-            title: "Title 1",
-            description: "this is first "
-        },
-        {
-            title: "Title 2",
-            description: "this is second"
-        },
-        {
-            title: "Title 3",
-            description: "this is third"
-        },
-    ]
+    const [myStyle, setMystyle] = useState({
+        color: 'black',
+        backgroundColor: 'white',
+        
+    });
 
+     const [btnText , setBtnText] = useState("Dark Mode");
+
+
+    const toggleStyle = () => {
+        if (myStyle.color === 'white') {
+            setMystyle({
+                color: 'black',
+                backgroundColor: 'white'
+            })
+            setBtnText("Dark Mode")
+        }
+        else {
+            setMystyle({
+                color: 'white',
+                backgroundColor: 'black',
+            })
+            setBtnText("Light Mode")
+        }
+    }
     return (
-        <Container maxW='1000px' >
-            <Heading py={6}> Know about us !</Heading>
+        <Container maxW='1000px' style={myStyle} p={4}>
+            <Heading paddingBottom={6}> Know about us !</Heading>
             <p >
                 <b>TextBlend</b> is a ReactJs website built primarily to do various
                 operations on regular typed text. You can safely use WordPad or NotePad
@@ -41,10 +58,65 @@ function About() {
                 The most eminent features of the website are as follows :
             </p>
 
-            <Box py={10}>
-                {accordianItems.map((accordianItem) => {
-                    return <Accordian key={accordianItem.title} {...accordianItem} />
-                })}
+            <Box py={10} >
+                <Accordion allowToggle>
+                    <AccordionItem>
+                        <h2>
+                            <AccordionButton _expanded={{ bg: 'primary.500', color: 'white' }}>
+                                <Box as="span" flex='1' textAlign='left'>
+                                    Section 1 title
+                                </Box>
+                                <AccordionIcon />
+                            </AccordionButton>
+                        </h2>
+                        <AccordionPanel pb={4}>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat.
+                        </AccordionPanel>
+                    </AccordionItem>
+
+                    <AccordionItem>
+                        <h2>
+                            <AccordionButton _expanded={{ bg: 'primary.500', color: 'white' }}>
+                                <Box as="span" flex='1' textAlign='left'>
+                                    Section 2 title
+                                </Box>
+                                <AccordionIcon />
+                            </AccordionButton>
+                        </h2>
+                        <AccordionPanel pb={4}>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat.
+                        </AccordionPanel>
+                    </AccordionItem>
+
+                    <AccordionItem>
+                        <h2>
+                            <AccordionButton _expanded={{ bg: 'primary.500', color: 'white' }}>
+                                <Box as="span" flex='1' textAlign='left'>
+                                    Section 2 title
+                                </Box>
+                                <AccordionIcon />
+                            </AccordionButton>
+                        </h2>
+                        <AccordionPanel pb={4}>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat.
+                        </AccordionPanel>
+                    </AccordionItem>
+                </Accordion>
+            </Box>
+
+            <Box>
+                <Button onClick={toggleStyle}>
+                    {btnText}
+                </Button>
             </Box>
         </Container>
     )
