@@ -7,8 +7,8 @@ export default function App() {
   return(
     <>
     <Header />;
-    {/* <TextForm/> */}
-    <About/>
+    <TextForm/>
+    {/* <About/> */}
     </>
   ) 
 }

@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
-import { Textarea, Container, Heading, Button, Stack } from '@chakra-ui/react'
+import { Textarea, Container, Heading, Stack, } from '@chakra-ui/react'
+import ButtonComponent from './ButtonComponent'
 
 function TextForm() {
+
+    const [text, setText] = useState("");
 
     //get the entered text 
     const handleOnchange = (e) => {
@@ -27,8 +30,21 @@ function TextForm() {
         setText(newText);
     }
 
-    const [text, setText] = useState("");
-
+    const buttonItems = [
+        {
+            label: "Clear Text",
+            handleOnClick: handleClearClick
+        },
+        {
+            label: "UpperCase",
+            handleOnClick: handleUpClick
+        },
+        {
+            label: "LowerCase",
+            handleOnClick: handleLowClick
+        }, 
+     
+    ]
 
     return (
         <>
@@ -44,25 +60,14 @@ function TextForm() {
                     onChange={handleOnchange}
                     borderRadius={4}
                 />
-                {/* TODO : create a button componet and then use that for optimization */}
+
+                {/* TODO : create a button componet */}
                 <Stack spacing={4} direction='row' align='center' my={6}>
-                <Button colorScheme='green' 
-                        onClick={handleClearClick}>
-                        Clear-Text
-                    </Button>
-
-                    <Button colorScheme='green' 
-                        onClick={handleUpClick}>
-                        UpperCase
-                    </Button>
-
-                    <Button colorScheme='green' 
-                        onClick={handleLowClick}>
-                        LowerCase
-                    </Button>
-
-                    
+                    {buttonItems.map((buttonItem) => {
+                        return <ButtonComponent key={buttonItem.label} {...buttonItem} />
+                    })}
                 </Stack>
+
             </Container>
 
             <Container maxW='1000px ' >
@@ -78,11 +83,11 @@ function TextForm() {
                 </p>
 
                 <p>
-                {' '}<b>{0.008 * text
-                    .replace(/\s/)
-                    .split(' ')
-                    .filter((value) => value !== '').length}
-                </b>{' '} minutes read
+                    {' '}<b>{0.008 * text
+                        .replace(/\s/)
+                        .split(' ')
+                        .filter((value) => value !== '').length}
+                    </b>{' '} minutes read
                 </p>
 
                 <Heading as='h2' size='lg' my={4}>Preview</Heading>
