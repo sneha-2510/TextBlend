@@ -30,6 +30,17 @@ function TextForm() {
         setText(newText);
     }
 
+    const handleSentenceClick = () => {
+        // console.log("uppercase button was clicked");
+        const words = text.toLowerCase().split(' ');
+        const sentenceCased = words.map(
+        (word) => word.charAt(0).toUpperCase() + word.slice(1)
+      );
+        const newText = sentenceCased.join(' ');
+        
+        setText(newText);
+    }
+
     const buttonItems = [
         {
             label: "Clear Text",
@@ -43,6 +54,10 @@ function TextForm() {
             label: "LowerCase",
             handleOnClick: handleLowClick
         }, 
+        {
+            label : "Sentence Case",
+            handleOnClick : handleSentenceClick
+        }
      
     ]
 
